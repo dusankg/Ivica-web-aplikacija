@@ -15,8 +15,8 @@
 
 	<packaging>war</packaging>
 
-	<name>spring-security-example</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Ivica-backend</name>
+	<description>Ivica web application</description>
 
 	<properties>
 		<java.version>1.8</java.version>
