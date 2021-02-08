@@ -22,12 +22,18 @@ import { AppComponent } from './app.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { LoginService } from './login-component/login-service';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RegisterComponent } from './register/register.component';
+import { ValidateAccountComponent } from './validate-account/validate-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponentComponent,
-    HomePageComponent
+    HomePageComponent,
+    ResetPasswordComponent,
+    RegisterComponent,
+    ValidateAccountComponent
   ],
   imports: [
     BrowserModule,

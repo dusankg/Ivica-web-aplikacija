@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,6 +30,7 @@ import com.example.SOTIS.model.UserRequest;
 import com.example.SOTIS.model.UserTokenState;
 import com.example.SOTIS.secutiry.TokenUtils;
 import com.example.SOTIS.secutiry.auth.JwtAuthenticationRequest;
+import com.example.SOTIS.service.EmailService;
 import com.example.SOTIS.service.UserService;
 import com.example.SOTIS.service.impl.CustomUserDetailsService;
 
@@ -50,6 +52,9 @@ public class AuthenticationController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private EmailService emailService;
 
 	// Prvi endpoint koji pogadja korisnik kada se loguje.
 	// Tada zna samo svoje korisnicko ime i lozinku i to prosledjuje na backend.
@@ -70,13 +75,22 @@ public class AuthenticationController {
 		String jwt = tokenUtils.generateToken(user.getUsername());
 		int expiresIn = tokenUtils.getExpiredIn();
 
+		try {
+			emailService.sendProbMail();
+		} catch (MailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// Vrati token kao odgovor na uspesnu autentifikaciju
 		return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
 	}
 
 	// Endpoint za registraciju novog korisnika
 	@PostMapping("/signup")
-	public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
+	public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) throws MailException, InterruptedException {
 
 		User existUser = this.userService.findByUsername(userRequest.getUsername());
 		if (existUser != null) {
@@ -84,6 +98,16 @@ public class AuthenticationController {
 		}
 
 		User user = this.userService.save(userRequest);
+		
+		// Dodatno postavljam email adresu i vrednosti polja "enabled" na False kako bismo mogli da ga verifikujemo kasnije
+		user.setEmail(userRequest.getEmail());
+		user.setEnabled(false);
+		
+		// Dodavanje random verifikacionog koda
+		int verificationCode = (int)(Math.random()*9000)+1000;
+		user.setVerificationCode(verificationCode);
+		
+		emailService.sendVerificationCode(user);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(user.getId()).toUri());
 		return new ResponseEntity<>(user, HttpStatus.CREATED);

@@ -12,6 +12,8 @@ public class UserRequest {
 	private String firstname;
 
 	private String lastname;
+	
+	private String email;
 
 	public String getUsername() {
 		return username;
@@ -51,6 +53,14 @@ public class UserRequest {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
