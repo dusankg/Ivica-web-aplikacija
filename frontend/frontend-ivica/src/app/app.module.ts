@@ -20,11 +20,14 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
+import { LoginService } from './login-component/login-service';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponentComponent
+    LoginComponentComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import { LoginComponentComponent } from './login-component/login-component.compo
     MatDividerModule,
     HttpClientModule
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [ LoginService, { provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
