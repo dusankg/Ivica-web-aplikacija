@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'homePage', component: HomePageComponent },
   { path: '', component: HomePageComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'validateAccount', component: ValidateAccountComponent },
+  { path: 'validateAccount/:code', component: ValidateAccountComponent },
   { path: 'resetPassword', component: ResetPasswordComponent }
 
 ];

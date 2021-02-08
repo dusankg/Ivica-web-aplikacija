@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import { JwtAutenticationRequest } from '../model/JwtAuthenticationRequest';
+import { UserRequest } from '../model/UserRequest';
 
 @Injectable()
 export class LoginService {
@@ -31,5 +32,10 @@ export class LoginService {
   public login(request: JwtAutenticationRequest){
     return this.http.post<any>(this.authURL + "login", request);
   }
+
+  public signUp(userRequest: UserRequest){
+    return this.http.post<any>(this.authURL + "signup", userRequest);
+  }
+
 
 }

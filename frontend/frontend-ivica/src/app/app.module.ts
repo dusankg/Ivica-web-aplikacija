@@ -25,6 +25,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { RegisterComponent } from './register/register.component';
 import { ValidateAccountComponent } from './validate-account/validate-account.component';
+import { RegisterService } from './register/registerService';
+import { ValidateAccountService } from './validate-account/validateAccount-service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { ValidateAccountComponent } from './validate-account/validate-account.co
     MatDividerModule,
     HttpClientModule
   ],
-  providers: [ LoginService, { provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [ LoginService, RegisterService, ValidateAccountService, { provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

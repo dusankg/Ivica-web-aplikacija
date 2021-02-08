@@ -24,10 +24,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.SOTIS.dto.VerificateAcountDTO;
 import com.example.SOTIS.exception.ResourceConflictException;
 import com.example.SOTIS.model.User;
 import com.example.SOTIS.model.UserRequest;
 import com.example.SOTIS.model.UserTokenState;
+import com.example.SOTIS.repository.UserRepository;
 import com.example.SOTIS.secutiry.TokenUtils;
 import com.example.SOTIS.secutiry.auth.JwtAuthenticationRequest;
 import com.example.SOTIS.service.EmailService;
@@ -56,6 +58,9 @@ public class AuthenticationController {
 	@Autowired
 	private EmailService emailService;
 
+	@Autowired
+	private UserRepository userRepository;
+	
 	// Prvi endpoint koji pogadja korisnik kada se loguje.
 	// Tada zna samo svoje korisnicko ime i lozinku i to prosledjuje na backend.
 	@PostMapping("/login")
@@ -72,19 +77,13 @@ public class AuthenticationController {
 
 		// Kreiraj token za tog korisnika
 		User user = (User) authentication.getPrincipal();
+		
+		if(user.isValidated() == false) {
+			ResponseEntity.badRequest();
+		}
 		String jwt = tokenUtils.generateToken(user.getUsername());
 		int expiresIn = tokenUtils.getExpiredIn();
 
-		try {
-			emailService.sendProbMail();
-		} catch (MailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// Vrati token kao odgovor na uspesnu autentifikaciju
 		return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
 	}
 
@@ -101,16 +100,47 @@ public class AuthenticationController {
 		
 		// Dodatno postavljam email adresu i vrednosti polja "enabled" na False kako bismo mogli da ga verifikujemo kasnije
 		user.setEmail(userRequest.getEmail());
-		user.setEnabled(false);
+		
+		user.setEnabled(true);
+		user.setValidated(false);
 		
 		// Dodavanje random verifikacionog koda
 		int verificationCode = (int)(Math.random()*9000)+1000;
 		user.setVerificationCode(verificationCode);
 		
+		userRepository.save(user);
 		emailService.sendVerificationCode(user);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(user.getId()).toUri());
 		return new ResponseEntity<>(user, HttpStatus.CREATED);
+	}
+	
+	// Endpoint za validaciju novog korisnika
+	@PostMapping("/verificate")
+	public ResponseEntity<User> verificateAccount(@RequestBody VerificateAcountDTO verificateAccount) throws MailException, InterruptedException {
+
+		User existUser = this.userService.findByUsername(verificateAccount.getUsername());
+		if (existUser == null) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(verificateAccount.getUsername(),
+						verificateAccount.getPassword()));
+		User user = (User) authentication.getPrincipal();
+		
+		user.setValidated(true);
+		//User user = this.userService.findByUsername(verificateAccount.getUsername());
+		
+		if (user.getVerificationCode() != verificateAccount.getValidationCode()) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		
+		user.setEnabled(true);
+		
+		userRepository.save(user);
+
+		return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
 	}
 
 	// U slucaju isteka vazenja JWT tokena, endpoint koji se poziva da se token osvezi

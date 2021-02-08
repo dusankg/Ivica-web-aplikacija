@@ -59,6 +59,9 @@ public class User implements UserDetails {
     @Column(name = "verificationCode")
     private int verificationCode;
     
+    @Column
+    private boolean validated = false;
+    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -167,4 +170,13 @@ public class User implements UserDetails {
 		this.verificationCode = verificationCode;
 	}
 
+	public boolean isValidated() {
+		return validated;
+	}
+
+	public void setValidated(boolean validated) {
+		this.validated = validated;
+	}
+
+	
 }

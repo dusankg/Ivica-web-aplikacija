@@ -45,9 +45,12 @@ public class EmailService {
 		mail.setTo(user.getEmail());
 		mail.setFrom(env.getProperty("spring.mail.username"));
 		mail.setSubject("Verifikacija registracije. Vas verifikacioni broj je: " + user.getVerificationCode());
-		mail.setText("Postovani/a " + user.getFirstName() + " " + user.getLastName() + ", \n\nVas zahtev za registaciju je prihvacen.\n\n"
-				+ "Vas verifikacioni kod je: " + user.getVerificationCode()
-				+ " \n\nOvde cete aktivirati nalog "+ "http://localhost:4200/validateAccount");
+		mail.setText(
+					"Postovani/a " + user.getFirstName() + " " + user.getLastName() 
+					+ ", \n\nVas zahtev za registaciju je prihvacen.\n\n"
+					+ "Vas verifikacioni kod je: " + user.getVerificationCode()
+					+ " \n\nOvde cete aktivirati nalog "+ "http://localhost:4200/validateAccount/" + user.getVerificationCode()
+					);
 		javaMailSender.send(mail);
 
 		System.out.println("Email poslat!");
