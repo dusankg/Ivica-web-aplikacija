@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "frontend-ivica"
+  "defaultProject": "frontend-ivica",
+  "cli": {
+    "analytics": false
+  }
 }

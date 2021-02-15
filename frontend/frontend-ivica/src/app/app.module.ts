@@ -27,6 +27,7 @@ import { RegisterComponent } from './register/register.component';
 import { ValidateAccountComponent } from './validate-account/validate-account.component';
 import { RegisterService } from './register/registerService';
 import { ValidateAccountService } from './validate-account/validateAccount-service';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ValidateAccountService } from './validate-account/validateAccount-servi
     HomePageComponent,
     ResetPasswordComponent,
     RegisterComponent,
-    ValidateAccountComponent
+    ValidateAccountComponent,
+    TermsAndConditionsComponent
   ],
   imports: [
     BrowserModule,
