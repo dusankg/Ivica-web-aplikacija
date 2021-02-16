@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-image: url('src\app\images\rtanj-background-16x9.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -20,13 +20,14 @@ height: 370px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+background-color: rgba(0,0,0,0.2) !important;
 }
 
 .social_icon span{
 font-size: 60px;
 margin-left: 10px;
-color: #FFC312;
+color: #167699;
+opacity: 0.8;
 }
 
 .social_icon span:hover{
@@ -46,7 +47,7 @@ top: -45px;
 
 .input-group-prepend span{
 width: 50px;
-background-color: #FFC312;
+background-color: grey;
 color: black;
 border:0 !important;
 }
@@ -71,7 +72,7 @@ margin-right: 5px;
 
 .login_btn{
 color: black;
-background-color: #FFC312;
+background-color: #21bf4d;
 width: 100px;
 }
 

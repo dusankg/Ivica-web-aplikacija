@@ -140,7 +140,7 @@ nav ul li mat-icon {
 }
 
 nav {
-    opacity: 0.9;
+    opacity: 0.6;
     overflow: hidden;
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
