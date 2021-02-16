@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'validateAccount/:code', component: ValidateAccountComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
-  { path: 'termsAndConditions', component: TermsAndConditionsComponent }
+  { path: 'termsAndConditions', component: TermsAndConditionsComponent },
+
 ];
 
 @NgModule({

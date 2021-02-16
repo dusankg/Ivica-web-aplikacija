@@ -34,6 +34,8 @@ import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-co
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { FloatSideNavComponent } from './float-side-nav/float-side-nav.component';
+import { HomePageSearchComponent } from './home-page-search/home-page-search.component';
+import { IzdvajamoIzPonudeComponent } from './izdvajamo-iz-ponude/izdvajamo-iz-ponude.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { FloatSideNavComponent } from './float-side-nav/float-side-nav.component
     TermsAndConditionsComponent,
     NavbarComponent,
     FooterComponent,
-    FloatSideNavComponent
+    FloatSideNavComponent,
+    HomePageSearchComponent,
+    IzdvajamoIzPonudeComponent
   ],
   imports: [
     BrowserModule,
