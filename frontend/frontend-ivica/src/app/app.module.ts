@@ -18,6 +18,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http'
 
+import {MatIconModule} from '@angular/material/icon'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppComponent } from './app.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { LoginService } from './login-component/login-service';
@@ -27,6 +30,12 @@ import { RegisterComponent } from './register/register.component';
 import { ValidateAccountComponent } from './validate-account/validate-account.component';
 import { RegisterService } from './register/registerService';
 import { ValidateAccountService } from './validate-account/validateAccount-service';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { FloatSideNavComponent } from './float-side-nav/float-side-nav.component';
+import { HomePageSearchComponent } from './home-page-search/home-page-search.component';
+import { IzdvajamoIzPonudeComponent } from './izdvajamo-iz-ponude/izdvajamo-iz-ponude.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +44,13 @@ import { ValidateAccountService } from './validate-account/validateAccount-servi
     HomePageComponent,
     ResetPasswordComponent,
     RegisterComponent,
-    ValidateAccountComponent
+    ValidateAccountComponent,
+    TermsAndConditionsComponent,
+    NavbarComponent,
+    FooterComponent,
+    FloatSideNavComponent,
+    HomePageSearchComponent,
+    IzdvajamoIzPonudeComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +69,9 @@ import { ValidateAccountService } from './validate-account/validateAccount-servi
     MatPaginatorModule,
     MatButtonModule,
     MatDividerModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    MatIconModule
   ],
   providers: [ LoginService, RegisterService, ValidateAccountService, { provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],

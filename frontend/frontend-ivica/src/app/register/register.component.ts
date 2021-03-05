@@ -14,10 +14,12 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
+  confirmedUserConditions: boolean;
 
   constructor(private formBuilder: FormBuilder, private router: Router,  private registerService: RegisterService) { }
 
   ngOnInit(): void {
+    this.confirmedUserConditions = false
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -25,7 +27,7 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
-  });
+      });
   }
 
   get f() { return this.registerForm.controls; }
@@ -41,6 +43,7 @@ export class RegisterComponent implements OnInit {
 
   public sendValidationCode(){
 
+    console.log(this.confirmedUserConditions)
     if (this.f.password.value !== this.f.confirmPassword.value){
       alert("Sifre se ne poklapaju");
       return;
