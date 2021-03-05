@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>rs.ac.uns.ftn.informatika</groupId>
-	<artifactId>spring-security-example</artifactId>
+	<artifactId>Ivica-web-aplikacija</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<packaging>war</packaging>
