@@ -23,9 +23,21 @@ public class ApartmentController {
 	@Autowired
 	private ApartmentServiceImpl apartmentService;
 	
-	@GetMapping("/getActiveApartments")
+	@GetMapping("/activeAll")
 	public ResponseEntity<Set<Apartment>> getAllActiveApartments() {
 		Set<Apartment> apartments = apartmentService.getAllActiveApartments();
+		return new ResponseEntity<>(apartments, HttpStatus.OK);
+	}
+	
+	@GetMapping("/activeForRent")
+	public ResponseEntity<Set<Apartment>> getAllActiveApartmentsForRent() {
+		Set<Apartment> apartments = apartmentService.getAllActiveApartmentsForRent();
+		return new ResponseEntity<>(apartments, HttpStatus.OK);
+	}
+	
+	@GetMapping("/activeForSale")
+	public ResponseEntity<Set<Apartment>> getAllActiveApartmentsForSale() {
+		Set<Apartment> apartments = apartmentService.getAllActiveApartmentsForSale();
 		return new ResponseEntity<>(apartments, HttpStatus.OK);
 	}
 }

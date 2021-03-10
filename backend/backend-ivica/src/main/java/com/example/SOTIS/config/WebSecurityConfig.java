@@ -74,7 +74,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers("/auth/**").permitAll().antMatchers("/h2-console/**").permitAll().antMatchers("/api/foo").permitAll()
 				
 				// DODAJEM PUTANJE KOJIMA MOZE SVAKO DA PRISTUPI
-				.antMatchers("/apartment/getActiveApartments").permitAll()
+				.antMatchers("/apartment/**").permitAll()
+				
 				
 				// za svaki drugi zahtev korisnik mora biti autentifikovan
 				.anyRequest().authenticated().and()

@@ -132,9 +132,6 @@ public class Agency extends User{
 		this.lastPasswordResetDate = lastPasswordResetDate;
 	}
 
-	public int getVerificationCode() {
-		return verificationCode;
-	}
 
 	public void setVerificationCode(int verificationCode) {
 		this.verificationCode = verificationCode;

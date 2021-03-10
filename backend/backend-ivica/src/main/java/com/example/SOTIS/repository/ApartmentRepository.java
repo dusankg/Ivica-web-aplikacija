@@ -13,5 +13,13 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
 	@Query("SELECT a FROM Apartment a WHERE a.active = true")
 	Set<Apartment> getAllActiveApartments();
 	
+	// vracam sve aktivne apartmane
+	@Query("SELECT a FROM Apartment a WHERE a.active = true and a.forSale = false")
+	Set<Apartment> getAllActiveApartmentsForRent();
+	
+	// vracam sve aktivne apartmane
+	@Query("SELECT a FROM Apartment a WHERE a.active = true and a.forSale = true")
+	Set<Apartment> getAllActiveApartmentsForSale();
+	
 	
 }

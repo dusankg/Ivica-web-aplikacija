@@ -49,7 +49,7 @@ public class Apartment {
     private Boolean active;
     
     @Column
-    private Boolean for_sale; // ako je za prodaju true, ako je za iznajmljivanje onda false
+    private Boolean forSale; // ako je za prodaju true, ako je za iznajmljivanje onda false
 
     
     
@@ -128,12 +128,12 @@ public class Apartment {
 		this.active = active;
 	}
 
-	public Boolean getFor_sale() {
-		return for_sale;
+	public Boolean getForSale() {
+		return forSale;
 	}
 
-	public void setFor_sale(Boolean for_sale) {
-		this.for_sale = for_sale;
+	public void setForSale(Boolean for_sale) {
+		this.forSale = for_sale;
 	}
     
       
