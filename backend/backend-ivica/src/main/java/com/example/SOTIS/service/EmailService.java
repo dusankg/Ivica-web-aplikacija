@@ -8,6 +8,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import com.example.SOTIS.model.Agency;
+import com.example.SOTIS.model.Guest;
 import com.example.SOTIS.model.User;
 
 @Service
@@ -36,10 +38,10 @@ public class EmailService {
 	}
 	
 	@Async
-	public void sendVerificationCode(User user) throws MailException, InterruptedException {
+	public void sendVerificationCode(Guest user) throws MailException, InterruptedException {
 
 		
-		System.out.println("Slanje emaila...");
+		System.out.println("Slanje validacionog emaila korisniku...");
 
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(user.getEmail());
@@ -50,6 +52,24 @@ public class EmailService {
 					+ ", \n\nVas zahtev za registaciju je prihvacen.\n\n"
 					+ "Vas verifikacioni kod je: " + user.getVerificationCode()
 					+ " \n\nOvde cete aktivirati nalog "+ "http://localhost:4200/validateAccount/" + user.getVerificationCode()
+					);
+		javaMailSender.send(mail);
+
+		System.out.println("Email poslat!");
+	}
+
+	public void sendVerificationCodeAgency(Agency agency) {
+		System.out.println("Slanje validacionog emaila agenciji...");
+
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo(agency.getEmail());
+		mail.setFrom(env.getProperty("spring.mail.username"));
+		mail.setSubject("Verifikacija registracije agencije. Vas verifikacioni broj je: " + agency.getVerificationCode());
+		mail.setText(
+					"Postovani predstavnici " + agency.getName() + " agencije" 
+					+ ", \n\nVas zahtev za registaciju je prihvacen.\n\n"
+					+ "Vas verifikacioni kod je: " + agency.getVerificationCode()
+					+ " \n\nOvde cete aktivirati nalog "+ "http://localhost:4200/validateAccount/" + agency.getVerificationCode()
 					);
 		javaMailSender.send(mail);
 

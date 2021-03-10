@@ -32,26 +32,26 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form>
+				<form >
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="korisničko ime">
+						<input type="text" class="form-control" [(ngModel)]="username" name = "username"placeholder="korisničko ime">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="lozinka">
+						<input type="password" class="form-control" [(ngModel)]="password" name = "password" placeholder="lozinka">
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Zapamti me
 					</div>
 					<br />
 					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
+						<input type="submit" (click) = "login()" value="Login" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
@@ -67,13 +67,6 @@
 	</div>
 </div>
   </div>
-<<<<<<< HEAD
-
-
-</div>
-
-=======
   <br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
->>>>>>> 3d74a61d3662d3f5f8985786767951377b60e24d

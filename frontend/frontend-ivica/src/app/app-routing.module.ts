@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { ValidateAccountComponent } from './validate-account/validate-account.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
+import { RegisterCompanyComponent } from './register-company/register-company.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponentComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'validateAccount/:code', component: ValidateAccountComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
   { path: 'termsAndConditions', component: TermsAndConditionsComponent },
+  { path: 'registerCompany', component: RegisterCompanyComponent },
 
 ];
 

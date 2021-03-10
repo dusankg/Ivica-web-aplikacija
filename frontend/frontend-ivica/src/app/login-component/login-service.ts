@@ -30,6 +30,7 @@ export class LoginService {
   }
 
   public login(request: JwtAutenticationRequest){
+    console.log(request)
     return this.http.post<any>(this.authURL + "login", request);
   }
 

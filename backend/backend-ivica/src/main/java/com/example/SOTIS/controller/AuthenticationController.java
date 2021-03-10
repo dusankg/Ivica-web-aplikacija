@@ -24,15 +24,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.SOTIS.dto.AgencyRequest;
+import com.example.SOTIS.dto.GuestRequest;
 import com.example.SOTIS.dto.VerificateAcountDTO;
 import com.example.SOTIS.exception.ResourceConflictException;
+import com.example.SOTIS.model.Agency;
+import com.example.SOTIS.model.Guest;
 import com.example.SOTIS.model.User;
 import com.example.SOTIS.model.UserRequest;
 import com.example.SOTIS.model.UserTokenState;
+import com.example.SOTIS.repository.AgencyRepository;
 import com.example.SOTIS.repository.UserRepository;
 import com.example.SOTIS.secutiry.TokenUtils;
 import com.example.SOTIS.secutiry.auth.JwtAuthenticationRequest;
+import com.example.SOTIS.service.AgencyService;
 import com.example.SOTIS.service.EmailService;
+import com.example.SOTIS.service.GuestService;
 import com.example.SOTIS.service.UserService;
 import com.example.SOTIS.service.impl.CustomUserDetailsService;
 
@@ -56,10 +63,16 @@ public class AuthenticationController {
 	private UserService userService;
 	
 	@Autowired
+	private AgencyService agencyService;
+	
+	@Autowired
 	private EmailService emailService;
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private GuestService guestService;
 	
 	// Prvi endpoint koji pogadja korisnik kada se loguje.
 	// Tada zna samo svoje korisnicko ime i lozinku i to prosledjuje na backend.
@@ -89,14 +102,14 @@ public class AuthenticationController {
 
 	// Endpoint za registraciju novog korisnika
 	@PostMapping("/signup")
-	public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) throws MailException, InterruptedException {
+	public ResponseEntity<User> addUser(@RequestBody GuestRequest userRequest, UriComponentsBuilder ucBuilder) throws MailException, InterruptedException {
 
 		User existUser = this.userService.findByUsername(userRequest.getUsername());
 		if (existUser != null) {
 			throw new ResourceConflictException(userRequest.getId(), "Username already exists");
 		}
 
-		User user = this.userService.save(userRequest);
+		Guest user = this.guestService.save(userRequest);
 		
 		// Dodatno postavljam email adresu i vrednosti polja "enabled" na False kako bismo mogli da ga verifikujemo kasnije
 		user.setEmail(userRequest.getEmail());
@@ -115,9 +128,29 @@ public class AuthenticationController {
 		return new ResponseEntity<>(user, HttpStatus.CREATED);
 	}
 	
-	// Endpoint za validaciju novog korisnika
+	// Endpoint za registraciju novog korisnika
+	@PostMapping("/signupAgency")
+	public ResponseEntity<Agency> addAgency(@RequestBody AgencyRequest agencyRequest, UriComponentsBuilder ucBuilder) throws MailException, InterruptedException {
+
+		User existUser = this.userService.findByUsername(agencyRequest.getUsername());
+		if (existUser != null) {
+			throw new ResourceConflictException(agencyRequest.getId(), "Username already exists");
+		}
+
+		// za detalje funcije pogledati implementaciju agencyService-a
+		Agency agency = this.agencyService.save(agencyRequest);
+		
+		// TODO email servis, slanje validacionog mail-a
+		emailService.sendVerificationCodeAgency(agency);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(agency.getId()).toUri());
+		return new ResponseEntity<>(agency, HttpStatus.CREATED);
+	}
+	
+	// Endpoint za validaciju i korisnika i agencije
 	@PostMapping("/verificate")
-	public ResponseEntity<User> verificateAccount(@RequestBody VerificateAcountDTO verificateAccount) throws MailException, InterruptedException {
+	public ResponseEntity<User> verificateUserAccount(@RequestBody VerificateAcountDTO verificateAccount) throws MailException, InterruptedException {
 
 		User existUser = this.userService.findByUsername(verificateAccount.getUsername());
 		if (existUser == null) {
@@ -129,19 +162,20 @@ public class AuthenticationController {
 						verificateAccount.getPassword()));
 		User user = (User) authentication.getPrincipal();
 		
-		user.setValidated(true);
+		
 		//User user = this.userService.findByUsername(verificateAccount.getUsername());
 		
 		if (user.getVerificationCode() != verificateAccount.getValidationCode()) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-		
+		user.setValidated(true);
 		user.setEnabled(true);
 		
 		userRepository.save(user);
 
 		return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
 	}
+
 
 	// U slucaju isteka vazenja JWT tokena, endpoint koji se poziva da se token osvezi
 	@PostMapping(value = "/refresh")

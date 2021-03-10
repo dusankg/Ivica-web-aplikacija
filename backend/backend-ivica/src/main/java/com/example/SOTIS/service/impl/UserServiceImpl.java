@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.SOTIS.model.Authority;
+import com.example.SOTIS.model.Guest;
 import com.example.SOTIS.model.User;
 import com.example.SOTIS.model.UserRequest;
 import com.example.SOTIS.repository.UserRepository;
@@ -47,14 +48,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User save(UserRequest userRequest) {
-		User u = new User();
+		Guest u = new Guest();
 		u.setUsername(userRequest.getUsername());
 		// pre nego sto postavimo lozinku u atribut hesiramo je
 		u.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 		u.setFirstName(userRequest.getFirstname());
 		u.setLastName(userRequest.getLastname());
 		u.setEnabled(true);
-		
+		u.setEmail(userRequest.getEmail());
 		List<Authority> auth = authService.findByname("ROLE_USER");
 		// u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
 		u.setAuthorities(auth);

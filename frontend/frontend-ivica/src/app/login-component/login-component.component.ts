@@ -13,8 +13,8 @@ export class LoginComponentComponent implements OnInit {
 
 
   title = 'frontend-agent';
-  email: string;
-  password: string;
+  public username: string;
+  public password: string;
   confirmPassword: string;
 
   show = false;
@@ -42,7 +42,7 @@ export class LoginComponentComponent implements OnInit {
   public login(){
     var authRequest: JwtAutenticationRequest = new JwtAutenticationRequest();
     
-    authRequest.username = this.email;
+    authRequest.username = this.username;
     authRequest.password = this.password;
 
     this.loginService.login(authRequest).subscribe(response => {

@@ -36,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FloatSideNavComponent } from './float-side-nav/float-side-nav.component';
 import { HomePageSearchComponent } from './home-page-search/home-page-search.component';
 import { IzdvajamoIzPonudeComponent } from './izdvajamo-iz-ponude/izdvajamo-iz-ponude.component';
+import { RegisterCompanyComponent } from './register-company/register-company.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { IzdvajamoIzPonudeComponent } from './izdvajamo-iz-ponude/izdvajamo-iz-p
     FooterComponent,
     FloatSideNavComponent,
     HomePageSearchComponent,
-    IzdvajamoIzPonudeComponent
+    IzdvajamoIzPonudeComponent,
+    RegisterCompanyComponent
   ],
   imports: [
     BrowserModule,

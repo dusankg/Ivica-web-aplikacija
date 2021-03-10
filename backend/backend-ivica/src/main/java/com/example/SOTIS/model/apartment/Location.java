@@ -1,4 +1,4 @@
-package com.example.SOTIS.model;
+package com.example.SOTIS.model.apartment;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,22 +15,23 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    // geo sirina
 	@Column
 	private double latitude;
 	
+	//geo duzina
 	@Column
 	private double longitude;
 	
-	//@Column
-	@OneToOne
-	private Address address;
+	@Column
+	private String streetAndNumber;
+	
+	@Column
+	private String city;
+	
+	@Column
+	private int postalCode;
 
-	public Location(double latitude, double longitude, Address address) {
-		super();
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.address = address;
-	}
 
 	public double getLatitude() {
 		return latitude;
@@ -48,13 +49,6 @@ public class Location {
 		this.longitude = longitude;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 
 	public Long getId() {
 		return id;
@@ -62,6 +56,30 @@ public class Location {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getStreetAndNumber() {
+		return streetAndNumber;
+	}
+
+	public void setStreetAndNumber(String streetAndNumber) {
+		this.streetAndNumber = streetAndNumber;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public int getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(int postalCode) {
+		this.postalCode = postalCode;
 	}
 	
 	
