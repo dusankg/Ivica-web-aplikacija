@@ -12,4 +12,4 @@ INSERT INTO AUTHORITY (name) VALUES ('ROLE_AGENCY');
 --INSERT INTO USER_AUTHORITY (user_id, authority_id) VALUES (2, 1);
 --INSERT INTO USER_AUTHORITY (user_id, authority_id) VALUES (2, 2);
 
-INSERT INTO APARTMENT (dtype, active, for_sale, guests_number) VALUES ('ApartmentForRent', true, false, 4);
+INSERT INTO APARTMENT (dtype, active, for_sale, guests_number, rooms_number) VALUES ('ApartmentForRent', true, false, 4, 2);

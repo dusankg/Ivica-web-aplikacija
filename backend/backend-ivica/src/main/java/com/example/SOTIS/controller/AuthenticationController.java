@@ -2,6 +2,7 @@ package com.example.SOTIS.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,7 @@ import com.example.SOTIS.model.Guest;
 import com.example.SOTIS.model.User;
 import com.example.SOTIS.model.UserRequest;
 import com.example.SOTIS.model.UserTokenState;
+import com.example.SOTIS.model.apartment.Apartment;
 import com.example.SOTIS.repository.AgencyRepository;
 import com.example.SOTIS.repository.UserRepository;
 import com.example.SOTIS.secutiry.TokenUtils;
@@ -41,6 +44,7 @@ import com.example.SOTIS.service.AgencyService;
 import com.example.SOTIS.service.EmailService;
 import com.example.SOTIS.service.GuestService;
 import com.example.SOTIS.service.UserService;
+import com.example.SOTIS.service.impl.ApartmentServiceImpl;
 import com.example.SOTIS.service.impl.CustomUserDetailsService;
 
 
@@ -210,4 +214,6 @@ public class AuthenticationController {
 		public String oldPassword;
 		public String newPassword;
 	}
+	
+
 }

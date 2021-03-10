@@ -40,7 +40,7 @@ public class Apartment {
     
     // samostalna polja
     @Column
-    private int roomsNumber;
+    private Integer roomsNumber;
     
     @Column
     private Integer guestsNumber;

@@ -17,11 +17,11 @@ public class Location {
     
     // geo sirina
 	@Column
-	private double latitude;
+	private Double latitude;
 	
 	//geo duzina
 	@Column
-	private double longitude;
+	private Double longitude;
 	
 	@Column
 	private String streetAndNumber;
@@ -30,7 +30,7 @@ public class Location {
 	private String city;
 	
 	@Column
-	private int postalCode;
+	private Integer postalCode;
 
 
 	public double getLatitude() {
