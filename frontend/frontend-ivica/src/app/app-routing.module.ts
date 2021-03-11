@@ -7,7 +7,8 @@ import { ValidateAccountComponent } from './validate-account/validate-account.co
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
-
+import { ListaApartmanaComponent} from './lista-apartmana/lista-apartmana.component';
+import { AddApartmentForRentComponent} from './add-apartment-for-rent/add-apartment-for-rent.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponentComponent },
   { path: 'homePage', component: HomePageComponent },
@@ -17,6 +18,8 @@ const routes: Routes = [
   { path: 'resetPassword', component: ResetPasswordComponent },
   { path: 'termsAndConditions', component: TermsAndConditionsComponent },
   { path: 'registerCompany', component: RegisterCompanyComponent },
+  { path: 'listaApartmana', component: ListaApartmanaComponent },
+  { path: 'addApartmentForRent', component: AddApartmentForRentComponent },
 
 ];
 

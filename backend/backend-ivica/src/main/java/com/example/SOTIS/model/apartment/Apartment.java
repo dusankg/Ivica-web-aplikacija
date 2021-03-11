@@ -51,8 +51,11 @@ public class Apartment {
     @Column
     private Boolean forSale; // ako je za prodaju true, ako je za iznajmljivanje onda false
 
+    @Column
+    private String description;
     
-    
+    @Column
+    private String keyWords;
     
 	public Type getType() {
 		return type;
@@ -135,8 +138,28 @@ public class Apartment {
 	public void setForSale(Boolean for_sale) {
 		this.forSale = for_sale;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setRoomsNumber(Integer roomsNumber) {
+		this.roomsNumber = roomsNumber;
+	}
+
+	public String getKeyWords() {
+		return keyWords;
+	}
+
+	public void setKeyWords(String keyWords) {
+		this.keyWords = keyWords;
+	}
     
-      
+	
     
     
     

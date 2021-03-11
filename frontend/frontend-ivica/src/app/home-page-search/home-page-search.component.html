@@ -33,26 +33,15 @@
                             <div class="col-lg-12">
                                 <div class="row">
                                     <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <input type="text" class="form-control search-slt"
-                                            placeholder="Cena">
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                         <input type="text" class="form-control search-slt"
-                                            placeholder="Grad">
+                                            placeholder="npr. Fruška gora" name="pretraga" [(ngModel)]="pretraga">
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <select class="form-control search-slt" id="exampleFormControlSelect1">
-                                            <option>Opcija</option>
-                                            <option>Example one</option>
-                                            <option>Example one</option>
-                                            <option>Example one</option>
-                                            <option>Example one</option>
-                                            <option>Example one</option>
-                                            <option>Example one</option>
-                                        </select>
+                                        <button type="button" class="btn btn-danger wrn-btn" (click)="pretrazi()">Pretraži</button>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <button type="button" class="btn btn-danger wrn-btn">Pretraži</button>
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,120 @@
+
+  <head>
+    <title>Travel Booking Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+     
+    </style>
+  </head>
+
+
+<body style="align-items: center;">
+
+    <br><br><br><br><br>
+    <div class="testbox" >
+        <form action="/">
+
+            <div class="banner">
+                <h1>Dodavanje apartmana za izdavanje</h1>
+              </div>
+              <div class="item">
+                <p>Tip apartmana</p>
+                <div class="name-item">
+                  <input type="text" name="name" placeholder="First" />
+                  <input type="text" name="name" placeholder="Last" />
+                </div>
+              </div>
+
+              <div class="item">
+                <p>Adresa</p>
+                <input type="text" name="name" placeholder="Ulica" required/>
+                <input type="text" name="name" placeholder="Broj" required/>
+                <div class="city-item">
+                  <input type="text" name="name" placeholder="Grad" required/>
+                  <input type="text" name="name" placeholder="Region" required/>
+                  <input type="text" name="name" placeholder="Poštanski broj" required/>
+                  <select required>
+                    <option selected value="" disabled>Država</option>
+                    <option value="1">Srbija</option>
+                    <option value="2">Crna Gora</option>
+                    <option value="3">BiH</option>
+                  </select>
+                </div>
+              </div>
+
+              <br>
+              <div class="item manji_input">
+                <p>Broj soba</p>
+                <input type="number" name="adults"/>
+              </div>
+
+              <div class="item manji_input">
+                <p>Broj kreveta</p>
+                <input type="number" name="adults"/>
+              </div>
+
+              <div class="item manji_input">
+                <p>Vreme ulaska</p>
+                <input type="time" name="adults"/>
+              </div>
+
+              <div class="item manji_input">
+                <p>Vreme odjave</p>
+                <input type="time" name="adults"/>
+              </div>
+
+              <div class="item manji_input">
+                <p>Cena po noćenju</p>
+                <input type="number" name="adults"/>
+              </div>
+              
+
+              <div class="item manji_input">
+                <p>Kontakt telefon</p>
+                <input type="text" name="phone" placeholder="### ### ####"/>
+              </div>
+
+
+
+              <div class="item manji_input">
+                <label>Images </label>
+                <input type="file" class="form-control" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+                      text/plain, application/pdf, image/*" (change)="changeListener($event)"
+                       [disabled]="base64Images.size == 5"
+                >
+              </div>
+
+              <div class="item">
+                <table>
+                  <tr>
+            
+                    <td *ngFor="let image of base64Images">
+                      <table align="center">
+                        <tr>
+                          <img src="{{image}}" height="100px" />
+                        </tr>
+                        <tr>
+                          <button (click)="removeImage(image)">Remove</button>
+                        </tr>
+                      </table>
+            
+                    </td>
+                  </tr>
+                </table>
+            </div>
+
+              <div class="item manji_input">
+                <button class="btn btn-success" type="submit" >Create</button>
+              </div>
+
+
+        </form>
+
+
+
+    </div>
+
+    <br><br><br><br><br><br>
+</body>
+  

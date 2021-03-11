@@ -24,7 +24,10 @@ public class Location {
 	private Double longitude;
 	
 	@Column
-	private String streetAndNumber;
+	private String street;
+	
+	@Column
+	private String number;
 	
 	@Column
 	private String city;
@@ -58,12 +61,33 @@ public class Location {
 		this.id = id;
 	}
 
-	public String getStreetAndNumber() {
-		return streetAndNumber;
+
+	public String getStreet() {
+		return street;
 	}
 
-	public void setStreetAndNumber(String streetAndNumber) {
-		this.streetAndNumber = streetAndNumber;
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public void setPostalCode(Integer postalCode) {
+		this.postalCode = postalCode;
 	}
 
 	public String getCity() {

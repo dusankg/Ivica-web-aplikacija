@@ -37,6 +37,10 @@ import { FloatSideNavComponent } from './float-side-nav/float-side-nav.component
 import { HomePageSearchComponent } from './home-page-search/home-page-search.component';
 import { IzdvajamoIzPonudeComponent } from './izdvajamo-iz-ponude/izdvajamo-iz-ponude.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
+import { ListaApartmanaComponent } from './lista-apartmana/lista-apartmana.component';
+
+import { SafePipeModule } from 'safe-pipe';
+import { AddApartmentForRentComponent } from './add-apartment-for-rent/add-apartment-for-rent.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +56,9 @@ import { RegisterCompanyComponent } from './register-company/register-company.co
     FloatSideNavComponent,
     HomePageSearchComponent,
     IzdvajamoIzPonudeComponent,
-    RegisterCompanyComponent
+    RegisterCompanyComponent,
+    ListaApartmanaComponent,
+    AddApartmentForRentComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,8 @@ import { RegisterCompanyComponent } from './register-company/register-company.co
     MatDividerModule,
     HttpClientModule,
     NgbModule,
-    MatIconModule
+    MatIconModule,
+    SafePipeModule
   ],
   providers: [ LoginService, RegisterService, ValidateAccountService, { provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
