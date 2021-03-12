@@ -17,11 +17,11 @@ public class Location {
     
     // geo sirina
 	@Column
-	private Double latitude;
+	private Double latitude = (double) 0;;
 	
 	//geo duzina
 	@Column
-	private Double longitude;
+	private Double longitude = (double) 0;
 	
 	@Column
 	private String street;
@@ -33,9 +33,13 @@ public class Location {
 	private String city;
 	
 	@Column
-	private Integer postalCode;
+	private Integer postalCode = 0;;
 
 
+	@Column
+	private String googleMapsUrl;
+	
+	
 	public double getLatitude() {
 		return latitude;
 	}
@@ -104,6 +108,14 @@ public class Location {
 
 	public void setPostalCode(int postalCode) {
 		this.postalCode = postalCode;
+	}
+
+	public String getGoogleMapsUrl() {
+		return googleMapsUrl;
+	}
+
+	public void setGoogleMapsUrl(String googleMapsUrl) {
+		this.googleMapsUrl = googleMapsUrl;
 	}
 	
 	

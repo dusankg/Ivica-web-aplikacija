@@ -13,4 +13,5 @@ export class ApartmentForRentDTO{
     check_out_time: string;
     description: string;
     keyWords: string;
+    tumbnail: string;
 }

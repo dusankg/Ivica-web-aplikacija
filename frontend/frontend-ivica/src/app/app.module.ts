@@ -41,6 +41,7 @@ import { ListaApartmanaComponent } from './lista-apartmana/lista-apartmana.compo
 
 import { SafePipeModule } from 'safe-pipe';
 import { AddApartmentForRentComponent } from './add-apartment-for-rent/add-apartment-for-rent.component';
+import { ApartmentService } from './services/apartment-service';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,7 @@ import { AddApartmentForRentComponent } from './add-apartment-for-rent/add-apart
     MatIconModule,
     SafePipeModule
   ],
-  providers: [ LoginService, RegisterService, ValidateAccountService, { provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [ LoginService, RegisterService, ValidateAccountService, ApartmentService, { provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

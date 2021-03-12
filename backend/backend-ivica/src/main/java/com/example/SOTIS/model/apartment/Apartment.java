@@ -1,5 +1,6 @@
 package com.example.SOTIS.model.apartment;
 
+import java.sql.Blob;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.type.BlobType;
 
 import com.example.SOTIS.model.Agency;
 
@@ -56,6 +59,10 @@ public class Apartment {
     
     @Column
     private String keyWords;
+    
+    @Column(name = "tumbnail", length = 500000)
+    private String tumbnail;
+    
     
 	public Type getType() {
 		return type;
@@ -158,6 +165,16 @@ public class Apartment {
 	public void setKeyWords(String keyWords) {
 		this.keyWords = keyWords;
 	}
+
+	public String getTumbnail() {
+		return tumbnail;
+	}
+
+	public void setTumbnail(String tumbnail) {
+		this.tumbnail = tumbnail;
+	}
+
+
     
 	
     

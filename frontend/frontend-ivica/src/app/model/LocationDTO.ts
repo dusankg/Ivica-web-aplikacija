@@ -5,4 +5,5 @@ export class LocationDTO{
     number: string;
     city: string;
     postalCode: number;
+    googleMapsUrl: string;
 }

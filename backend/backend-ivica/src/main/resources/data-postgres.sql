@@ -14,4 +14,5 @@ INSERT INTO USER_AUTHORITY (user_id, authority_id) VALUES (1, 3);
 --INSERT INTO USER_AUTHORITY (user_id, authority_id) VALUES (2, 1);
 --INSERT INTO USER_AUTHORITY (user_id, authority_id) VALUES (2, 2);
 
-INSERT INTO APARTMENT (dtype, active, for_sale, guests_number, rooms_number) VALUES ('ApartmentForRent', true, false, 4, 2);
+INSERT INTO LOCATION (city, latitude, longitude, number, postal_code, street, google_maps_url) VALUES ('Novi Sad', 1, 1, '5B', 21000, 'Jirecekova', 'https://maps.google.com/maps?q=Jirecekova%205B%20%Novi%20Sad&t=&z=20&ie=UTF8&iwloc=&output=embed');
+INSERT INTO APARTMENT (dtype, active, for_sale, guests_number, rooms_number, location_id) VALUES ('ApartmentForRent', true, false, 4, 2, 1);

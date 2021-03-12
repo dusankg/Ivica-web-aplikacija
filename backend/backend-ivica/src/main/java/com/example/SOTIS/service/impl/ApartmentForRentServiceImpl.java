@@ -1,5 +1,7 @@
 package com.example.SOTIS.service.impl;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,7 @@ public class ApartmentForRentServiceImpl {
 	
 	public Long addApartmentForRent(ApartmentForRent apartmentForRent) {
 		
+				
 		Location l = apartmentForRent.getLocation();
 		
 		if (apartmentForRent.getLocation().getId() != null) {
@@ -48,4 +51,6 @@ public class ApartmentForRentServiceImpl {
 		}
 		return apartmentForRent.getId();
 	}
+	
+
 }
