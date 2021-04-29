@@ -14,4 +14,7 @@ export class ApartmentForRentDTO{
     description: string;
     keyWords: string;
     tumbnail: string;
+    phone: string;
+    email: string;
+    title: string;
 }

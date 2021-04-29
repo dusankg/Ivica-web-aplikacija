@@ -15,15 +15,23 @@
     <div class="testbox" >
         <form [formGroup]="formaUnos" action="/" (ngSubmit)="onSubmit()">
 
-            <div class="banner">
+              <div class="banner">
                 <h1>Dodavanje apartmana za izdavanje</h1>
               </div>
               <div class="item">
                 <p>Tip apartmana</p>
                 <div class="name-item">
-                  <input type="text" name="name" placeholder="First" />
-                  <input type="text" name="name" placeholder="Last" />
-                </div>
+                  <select required formControlName="type">
+                    <option selected value="" disabled >Tip </option>
+                    <option value="Soba">Soba</option>
+                    <option value="Stan">Stan</option>
+                    <option value="Kuća">Kuća</option>
+                  </select>                </div>
+              </div>
+
+              <div class="item">
+                <p>Naslov oglasa</p>
+                <input type="text" name="adults" formControlName="title"/>
               </div>
 
               <div class="item">
@@ -32,13 +40,13 @@
                 <input type="text" name="name" placeholder="Broj" required formControlName="number"/>
                 <div class="city-item" >
                   <input type="text" name="name" placeholder="Grad" required formControlName="city"/>
-                  <input type="text" name="name" placeholder="Region" required/>
+                  <input type="text" name="name" placeholder="Region" required formControlName="region"/>
                   <input type="text" name="name" placeholder="Poštanski broj" required formControlName="postalCode"/>
-                  <select required>
-                    <option selected value="" disabled>Država</option>
-                    <option value="1">Srbija</option>
-                    <option value="2">Crna Gora</option>
-                    <option value="3">BiH</option>
+                  <select required formControlName="country">
+                    <option selected value="" disabled >Država </option>
+                    <option value="Srbija">Srbija</option>
+                    <option value="Crna Gore">Crna Gora</option>
+                    <option value="BiH">BiH</option>
                   </select>
                 </div>
               </div>
@@ -68,11 +76,20 @@
                 <p>Cena po noćenju</p>
                 <input type="number" name="adults" formControlName="price_per_night"/>
               </div>
-              
+
+              <div class="item manji_input">
+                <p>Kljucne reči</p>
+                <input type="text" name="adults" formControlName="keyWords"/>
+              </div>              
 
               <div class="item manji_input">
                 <p>Kontakt telefon</p>
-                <input type="text" name="phone" placeholder="### ### ####"/>
+                <input type="text" name="phone" placeholder="### ### ####" formControlName="phoneNumber"/>
+              </div>
+
+              <div class="item manji_input">
+                <p>Email</p>
+                <input type="text" name="email" placeholder="###@####.###" formControlName="email"/>
               </div>
 
               <div class="item manji_input">

@@ -6,4 +6,6 @@ export class LocationDTO{
     city: string;
     postalCode: number;
     googleMapsUrl: string;
+    region: string;
+    country: string;
 }

@@ -9,4 +9,5 @@ export class Apartment{
     guestsNumber: number;
     forSale: boolean;
     tumbnail: string;
+    title: string;
 }

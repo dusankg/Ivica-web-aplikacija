@@ -34,4 +34,8 @@ export class ListaApartmanaComponent implements OnInit {
     })
   }
 
+  public isForSale(apartman: Apartment){
+    return apartman.forSale
+  }
+
 }

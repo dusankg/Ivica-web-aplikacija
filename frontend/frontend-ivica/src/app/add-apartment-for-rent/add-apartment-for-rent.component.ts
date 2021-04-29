@@ -33,14 +33,21 @@ export class AddApartmentForRentComponent implements OnInit {
       street: ['', Validators.required],
       number: ['', Validators.required],
 
+      region: ['', Validators.required],
+      country: ['', Validators.required],
+      
       city: ['', Validators.required],
-      postalCode: [0, Validators.required],
+      postalCode: ['', Validators.required],
       price_per_night: ['', Validators.required],
       check_in_time: ['', Validators.required],
       check_out_time: ['', Validators.required],
 
       description: ['', Validators.required],
       keyWords: ['', Validators.required],
+      title: ['', Validators.required],
+
+      phoneNumber: ['', Validators.required],
+      email: ['', Validators.required],
 
       });
   }
@@ -76,7 +83,11 @@ export class AddApartmentForRentComponent implements OnInit {
 
     myReader.onloadend = (e) => {
       this.base64Image = myReader.result as unknown as Blob;
-      this.base64Images.add(myReader.result as unknown as Blob);
+      this.apartmentService.compressImageSirina(this.base64Image, 720).then(compressed => {
+        this.base64Image = compressed as Blob;
+        this.base64Images.add(compressed as Blob);
+      })
+      
       //this.carDTO.images.push(myReader.result as string);
     }
     myReader.readAsDataURL(file);
@@ -108,6 +119,15 @@ export class AddApartmentForRentComponent implements OnInit {
 
     apartmanZaSlanje.tumbnail = this.tumbnail;
 
+    apartmanZaSlanje.title = this.f.title.value;
+
+    apartmanZaSlanje.phone = this.f.phoneNumber.value;
+
+    apartmanZaSlanje.email = this.f.email.value;
+
+    apartmanZaSlanje.keyWords = this.f.keyWords.value;
+
+
     var lokacija: LocationDTO = new LocationDTO();
 
     lokacija.city = this.f.city.value;
@@ -120,7 +140,12 @@ export class AddApartmentForRentComponent implements OnInit {
     
     lokacija.googleMapsUrl = `https://maps.google.com/maps?q=${this.f.street.value}%20${this.f.number.value}%20%${this.f.city.value}&t=&z=20&ie=UTF8&iwloc=&output=embed`;
 
+    lokacija.country = this.f.country.value;
 
+    lokacija.region = this.f.region.value;
+
+    console.log(lokacija)
+  
     apartmanZaSlanje.location = lokacija;
 
     console.log(apartmanZaSlanje)

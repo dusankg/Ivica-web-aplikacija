@@ -60,7 +60,16 @@ public class Apartment {
     @Column
     private String keyWords;
     
-    @Column(name = "tumbnail", length = 500000)
+    @Column
+    private String phone;
+    
+    @Column
+    private String email;
+    
+    @Column
+    private String title;
+    
+    @Column(name = "tumbnail", length = 300000)
     private String tumbnail;
     
     
@@ -174,6 +183,31 @@ public class Apartment {
 		this.tumbnail = tumbnail;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	
 
     
 	

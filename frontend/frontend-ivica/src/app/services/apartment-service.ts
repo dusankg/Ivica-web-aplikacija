@@ -21,6 +21,10 @@ export class ApartmentService {
     return this.http.get<any>(this.apartmentUrl + '/activeAll');
   }
 
+  public getApartmentImages(apartmentId: number){
+    return this.http.get<any>(this.apartmentUrl + '/images/' + apartmentId);
+  }
+
   public saveApartmentForRent(apartmanZaSlanje: ApartmentForRentDTO){
 
     const headerDict = {

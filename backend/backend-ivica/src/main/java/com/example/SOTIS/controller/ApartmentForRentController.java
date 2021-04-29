@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.SOTIS.dto.SlikeSetByte;
+import com.example.SOTIS.model.Agency;
 import com.example.SOTIS.model.User;
 import com.example.SOTIS.model.apartment.ApartmentForRent;
 import com.example.SOTIS.service.UserService;
@@ -39,7 +40,13 @@ public class ApartmentForRentController {
 	@PreAuthorize("hasRole('AGENCY')")
 	public ResponseEntity<String> createApartmentForSale(@RequestBody ApartmentForRent apartmentForRent, Principal user){
 
-		User loggedInUser = userService.findByUsername(user.getName());
+		//User loggedInUser = userService.findByUsername(user.getName());
+		
+		Agency agencija = (Agency) userService.findByUsername(user.getName());
+
+		apartmentForRent.setAgency( agencija );
+		
+		System.out.println(agencija.getPib());
 		
 		Long id = apartmentForRentService.addApartmentForRent(apartmentForRent);
 		if (id == -1l) {

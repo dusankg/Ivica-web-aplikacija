@@ -33,6 +33,12 @@ public class Location {
 	private String city;
 	
 	@Column
+	private String region;
+	
+	@Column
+	private String country;
+	
+	@Column
 	private Integer postalCode = 0;;
 
 
@@ -116,6 +122,22 @@ public class Location {
 
 	public void setGoogleMapsUrl(String googleMapsUrl) {
 		this.googleMapsUrl = googleMapsUrl;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	
 	

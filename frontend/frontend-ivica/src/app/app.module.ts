@@ -42,6 +42,8 @@ import { ListaApartmanaComponent } from './lista-apartmana/lista-apartmana.compo
 import { SafePipeModule } from 'safe-pipe';
 import { AddApartmentForRentComponent } from './add-apartment-for-rent/add-apartment-for-rent.component';
 import { ApartmentService } from './services/apartment-service';
+import { ApartmentDetailsComponent } from './apartment-details/apartment-details.component';
+import { ApartmentImagesComponent } from './apartment-images/apartment-images.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { ApartmentService } from './services/apartment-service';
     IzdvajamoIzPonudeComponent,
     RegisterCompanyComponent,
     ListaApartmanaComponent,
-    AddApartmentForRentComponent
+    AddApartmentForRentComponent,
+    ApartmentDetailsComponent,
+    ApartmentImagesComponent
   ],
   imports: [
     BrowserModule,
