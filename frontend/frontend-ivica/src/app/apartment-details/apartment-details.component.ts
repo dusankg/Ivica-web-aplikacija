@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApartmentService } from '../services/apartment-service';
+
 
 @Component({
   selector: 'app-apartment-details',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApartmentDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apartmentServise: ApartmentService, private route: ActivatedRoute) { }
+
+
+  private apartmentId: number;
+
 
   ngOnInit(): void {
+
+    this.apartmentId = Number(this.route.snapshot.paramMap.get("apartmentId"))
+    this.apartmentServise.getApartmentImages(this.apartmentId).subscribe(
+      response =>{
+        this.nizSlika = Array.from(response.slike)
+      }
+    );
+
   }
 
 }

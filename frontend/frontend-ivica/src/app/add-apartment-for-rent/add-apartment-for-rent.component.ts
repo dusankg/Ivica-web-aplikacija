@@ -155,7 +155,8 @@ export class AddApartmentForRentComponent implements OnInit {
         this.sendImages(response);
       }
     );
-
+    alert('Apartman je uspesno dodat')
+    this.router.navigate(['']);
     
 
   }
